@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scholarship Finder</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f6f9;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px #ccc;
+    }
+
+    .btn {
+      margin-top: 10px;
+      background: #007bff;
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🎓 Scholarship Finder</h1>
+
+    <input type="text" id="search" placeholder="Search scholarship name..." onkeyup="filterScholarships()">
+
+    <select id="category" onchange="filterScholarships()">
+      <option value="all">All Categories</option>
+      <option value="government">Government</option>
+      <option value="private">Private</option>
+      <option value="girls">Girls</option>
+      <option value="merit">Merit Based</option>
+    </select>
+
+    <div id="results"></div>
+  </div>
+
+  <script>
+    const scholarships = [
+      { name: "INSPIRE Scholarship", amount: "₹80,000 per year", category: "government" },
+      { name: "Pragati Scholarship for Girls", amount: "₹50,000 per year", category: "girls" },
+      { name: "Google Generation Scholarship", amount: "₹1,00,000", category: "private" },
+      { name: "Post Matric Scholarship", amount: "₹60,000", category: "government" },
+      { name: "Merit-cum-Means Scholarship", amount: "₹25,000", category: "merit" }
+    ];
+
+    function display(data) {
+      const results = document.getElementById("results");
+      results.innerHTML = "";
+
+      data.forEach(item => {
+        results.innerHTML += `
+          <div class="card">
+            <h3>${item.name}</h3>
+            <p><strong>Amount:</strong> ${item.amount}</p>
+            <p><strong>Category:</strong> ${item.category}</p>
+            <button class="btn" onclick="applyMessage()">Apply Now</button>
+          </div>
+        `;
+      });
+    }
+
+    function filterScholarships() {
+      const searchValue = document.getElementById("search").value.toLowerCase();
+      const categoryValue = document.getElementById("category").value;
+
+      const filtered = scholarships.filter(item => {
+        const matchesName = item.name.toLowerCase().includes(searchValue);
+        const matchesCategory = categoryValue === "all" || item.category === categoryValue;
+        return matchesName && matchesCategory;
+      });
+
+      display(filtered);
+    }
+
+    function applyMessage() {
+      alert("Application feature coming soon!");
+    }
+
+    display(scholarships);
+  
+  </script>
+<a href="aboume.html">
+    <button id ="abc">Know About Developer</button>
+  
+</a>
+</body>
+</html>
